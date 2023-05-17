@@ -96,7 +96,7 @@ O evento de inserção ocorre quando um ponto é recém escaneado pela Linha de 
 
 ![Insert](insert.png)
 
-Porém o que acontece se tivermos dois arcos e eles acabarem se intersectando? Ocorre uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência desses arcos, ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. Como demonstra o vídeo abaixo:
+Porém o que acontece se tivermos dois arcos e eles acabarem se intersectando? Ocorre uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência desses arcos, ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma parte da divisa das regiões de influência. Como demonstra o vídeo abaixo:
 
 
 ### Evento de Circulo
