@@ -1,4 +1,4 @@
-# Algoritmo de Fortuna e diagramas de Voronoi
+<h1>Algoritmo de Fortuna e diagramas de Voronoi</h1>
 
 ## Diagramas de Voronoi
 
