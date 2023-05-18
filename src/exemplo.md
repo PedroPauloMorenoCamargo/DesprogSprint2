@@ -102,7 +102,7 @@ O evento de inserção ocorre quando um ponto é recém escaneado pela Linha de 
 
 ???Exercicio 4
 O caso acima nos mostra o que acontece para apenas um sítio o que nos leva a seguinte questão: O que aconteceria se dois arcos se intersectassem?
-
+s
 **OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
 :::Gabarito
 Ocorreria uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios  das respectivas parábolas , ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. Como evidenciado abaixo pela parte laranja da figura:
