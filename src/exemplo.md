@@ -18,10 +18,7 @@ Aplicando essa ideia para qualquer plano finito, com um número finito n de pont
 
 ## O algoritmo de Fortuna
 
-Primeiramente, para entender a ideia do Algoritmo de Fortune é necessário entender o seguinte conceito:  *Linha de Varredura ("Sweep Line")*.
-
-
-### Linha de Varredura
+Primeiramente, para entender a ideia do Algoritmo de Fortune é necessário entender o seguinte conceito:  **Linha de Varredura ("Sweep Line")**.
 
 O algoritmo de Fortuna utiliza um método de varredura para construir o diagrama de voronoi. Um método de varredura consiste em dividir um plano em duas partes: a *"suja"* e a que já foi *"varrida (limpa)"*. Esse esquema é criado para que possamos identificar o acionamento de eventos do algoritmo, esses que serão discutidos futuramente no handout.
 \
@@ -29,11 +26,11 @@ O algoritmo de Fortuna utiliza um método de varredura para construir o diagrama
 Desse modo, no nosso caso precisamos de algo capaz de dividir um plano 2D em duas partes. Isso é uma tarefa perfeita para a geometria de uma **RETA** . Sendo assim, surge o conceito de  *"Linha de Varredura"*, uma linha que gradativamente vai "varrendo" o plano inteiro. 
 \
 \
-Nesse handout, utilizaremos a linha de varredura conforme a imagem abaixo, sendo assim, ela é uma reta que começa na parte superior da imagem e faz a varredura do eixo y dela (De cima para baixo). Além do mais, vale ressaltar é possível utilizar diferentes convenções da Linha de Varredura. Um exemplo é varrer dividindo o eixo x (Da esquerda pra direita).
+Nesse handout, utilizaremos a linha de varredura conforme a imagem abaixo, sendo assim, ela é uma reta que começa na parte superior da imagem e faz a varredura do eixo y dela (De cima para baixo). 
 
 ![Gif_SweepLine](Scan.gif)
 
-Com os conhecimentos adquiridos sobre a Linha de Varredura que tal fazer alguns exercicíos.
+Além do mais, vale ressaltar que é possível utilizar diferentes convenções da Linha de Varredura. Um exemplo é varrer dividindo o eixo x (Da esquerda pra direita). Sendo assim, com os conhecimentos adquiridos sobre a Linha de Varredura que tal fazer alguns exercicíos.
 
 ???Exercicio 1
 Como no algoritmo utilizamos a Linha de Varredura como referência, em um momento qualquer só temos conhecimento dos sítios que já foram varridos para esboçar o diagrama de voronoi.
@@ -51,7 +48,9 @@ Como no momento só existe um sítio que foi escaneado pela linha, só haverá e
 
 ???Exercicio 2
 
-Tomando como base o último exercício, o que aconteceria se adicionassemos um ponto recém varrido como na figura abaixo. Tente novamente esboçar as áreas de influência dos sítios já varridos.
+Tomando como base o último exercício, o que aconteceria se adicionassemos um ponto recém varrido, ou seja, que acabou de ser escaneado pela Linha de Varredura como na figura abaixo. Tente novamente esboçar as áreas de influência dos sítios já varridos.
+
+**OBS: Considere como "Recêm Varrido" um ponto que incide exatamente sobre a reta**
 
 ![Questao2](q2.png)
 :::Gabarito
@@ -66,40 +65,55 @@ O próximo exercício iremos fazer juntos, pois um novo conceito será introduzi
 \
 \
 Ao adicionarmos dois sítios recém varridos na figura original obtemos a seguinte imagem como resposta:
+\
+**OBS: Considere como "Recêm Varrido" um ponto que incide exatamente sobre a reta**
 
 ![Questao3](q3gab.png)
 
-A imagem acima faz sentido uma vez que por possuir três pontos será necessário a existência de três regiões de influência. Sendo necessário essas três regiões surge algo na intersecção entre elas que chamamos de Vértice de Voronoi que na imagem aparece como um circulo vermelho. 
+A imagem acima faz sentido uma vez que por possuir três pontos será necessário a existência de três regiões de influência. Para casos de diagramas de voronoi com três ou mais regiões de influência, é possível a ocorrência de uma intersecção entre três ou mais áreas em apenas um ponto. Esse ponto é chamado de *Vértice de Voronoi*, esse que aparece como um circulo vermelho na imagem acima. 
 \
 \
-Um Vértice de Voronoi se encontra no local onde há a intersecção de três ou mais áreas de influência, e por ele estar situado nessa intersecção ele possui uma característica peculiar: a distância dele para os sítios das áreas onde ocorrem a intersecção é igual. Ou seja, tomando com exemplo a figura acima e atribuindo aos sítios as variáveis (A,B,C) e ao vértice (V), sabemos que a AV = BV = CV.
+
+Como dito anteriormente, um Vértice de Voronoi se encontra no local onde há a intersecção de três ou mais áreas de influência, e por ele estar situado nessa intersecção ele possui uma característica peculiar: a distância dele para os sítios das áreas onde ocorrem a intersecção é igual. Ou seja, tomando com exemplo a figura acima e atribuindo aos três sítios as seguintes variáveis (A,B,C) e ao Vértice de Voronoi (V), sabemos que a $\overrightarrow{AV} = \overrightarrow{BV} = \overrightarrow{CV}$.
 \
 \
-Além do mais, o que aconteceria se continuássemos adicionando um número fixo de sítios recém varridos? A imagem a seguir nos mostra a resposta.
+Além do mais, o que aconteceria se continuássemos adicionando sítios sob a Linha de Varredura? A imagem a seguir nos mostra a resposta uma resposta para 8 sítos:
 
 ![Questao4](q4.png)
 
 ???Exercicio 3
-A partir da imagem anterior, é possível perceber um padrão formado pelos Vértices de Voronoi. Considerando infinitos sítos recém varridos qual figura é esperada-se que o padrão forme? Esses infinitos sítios podem ser aproximados para uma figura conhecida também?
+A partir da imagem anterior, é possível perceber um padrão formado pelos Vértices de Voronoi. Considerando infinitos sítos recém varridos qual figura é esperada-se que o padrão forme? Podemos relacionar esses sítios infinitamente distribuidos sob a reta por um conceito já aprendido ?
 
 :::Gabarito
-O padrão visto deverá criar uma parábola. Sim, ao por infinitos sítios distribuidos pelo eixo x no mesmo valor de y da Linha de Varredura formamos uma reta igual a essa, sendo assim, esses infinitos sítios formam a linha de varredura em si.
+O padrão visto deverá criar uma parábola. Sim, a distribuição desses infinitos sítios formam uma reta paralela com o eixo x, já que todos tem a mesma altura. Como todos eles incidem sob a Linha de Varredura eles são equivalentes a mesma.
 :::
 ???
 
-Dessa maneira, a área que essa parábola compõe serve como uma estimativa da região de influência de um único sítio em relação à posição da linha de varredura,desse modo, a parábola acaba por mostrar a região dos pontos que estão mais próximos do sítio que da Linha de Varredura. Valendo apena ressaltar que essa região de influência estimada da parábola pode mudar com o tempo. 
+Dessa maneira, a área que essa parábola engloba serve como uma estimativa da área de influência de um único sítio em relação à posição da linha de varredura,desse modo, a parábola acaba por mostrar a região dos pontos que estão mais próximos do sítio que da Linha de Varredura. Valendo apena ressaltar que essa região de influência estimada da parábola pode mudar com o tempo. Essa asserção nos leva ao primeiro evento do nosso algoritmo. 
 
 
-### Evento de Inserção
+## Evento de Inserção
 
-O evento de inserção ocorre quando um ponto é recém escaneado pela Linha de Varredura. Ao ser escaneado ocorre a inserção de uma parábola (arco), essa parábola é a mesma que vimos anteriormente, ou seja, delinea a região de pontos que estão mais próximos do sítio da Linha de Varredura,isso faz com que a área da parábola aumente com o distanciamento da linha. Isso pode ser visto a partir da imagem:
+O evento de inserção ocorre quando um ponto é recém escaneado pela Linha de Varredura. Ao ser escaneado ocorre a inserção de uma parábola (arco), essa parábola é a mesma que vimos anteriormente, ou seja, delinea a região de pontos que estão mais próximos do sítio do que da Linha de Varredura, isso faz com que a área da parábola aumente com o distanciamento da linha. Isso pode ser visto a partir das imagens simplificadas abaixo:
 
-![Insert](insert.png)
+:insertion1
 
-Porém o que acontece se tivermos dois arcos e eles acabarem se intersectando? Ocorre uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência desses arcos, ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. Como demonstra o vídeo abaixo:
+**OBS: A Imagem acima é apenas uma aproximação não contendo proporções exatas**
 
+???Exercicio 4
+O caso acima nos mostra o que acontece para apenas um sítio o que nos leva a seguinte questão: O que aconteceria se dois arcos se intersectassem?
 
-### Evento de Circulo
+**OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
+:::Gabarito
+Ocorreria uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios  das respectivas parábolas , ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. Como evidenciado abaixo pela parte laranja da figura:
+
+:insertion2
+
+:::
+???
+
+Agora é possível entender como são desenhadas partes das regiões de influências, porém o funcionamento que nós vimos só funciona para um caso de intersecção de dois arcos, o que nos gera a seguinte dúvida o que acontece na intersecção entre três arcos? Isso será demonstrado no próximo tópico no próximo tema.
+## Evento de Circulo
 
 Fontes: 
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
