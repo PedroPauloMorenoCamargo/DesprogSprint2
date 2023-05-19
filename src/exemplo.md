@@ -94,27 +94,85 @@ Dessa maneira, a área que essa parábola engloba serve como uma estimativa da �
 
 ## Evento de Inserção
 
-O evento de inserção ocorre quando um ponto é recém escaneado pela Linha de Varredura. Ao ser escaneado ocorre a inserção de uma parábola (arco), essa parábola é a mesma que vimos anteriormente, ou seja, delinea a região de pontos que estão mais próximos do sítio do que da Linha de Varredura, isso faz com que a área da parábola aumente com o distanciamento da linha. Isso pode ser visto a partir das imagens simplificadas abaixo:
+O evento de inserção ocorre quando Linha de Varredura encontra um sítio. Ao sítios ser escaneado ocorre a inserção de uma parábola (arco), essa parábola é a mesma que vimos anteriormente, ou seja, delinea a região de pontos que estão mais próximos do sítio do que da Linha de Varredura, isso faz com que a área da parábola aumente com o distanciamento da linha após o evento. Isso pode ser visto a partir das imagens simplificadas abaixo:
 
 :insertion1
 
 **OBS: A Imagem acima é apenas uma aproximação não contendo proporções exatas**
 
+Agora que entendemos o evento de inserção imagine que dois sítios tenham sido captados por esses eventos, como vimos com o distanciamento gradativo da Linha as parábolas deles irão aumentar, assumindo que eles são próximos um do outro o é provável de acontecer quando a Linha de Varredura está distante desses sítios? **Uma Intersecão!**. Isso nos leva ao questionameto abaixo:
+
 ???Exercicio 4
-O caso acima nos mostra o que acontece para apenas um sítio o que nos leva a seguinte questão: O que aconteceria se dois arcos se intersectassem?
-s
+Com o distanciamento gradativo da Linha de Varredura o que aconteceria se dois arcos se intersectassem?
+
 **OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
 :::Gabarito
-Ocorreria uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios  das respectivas parábolas , ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. Como evidenciado abaixo pela parte laranja da figura:
-
-:insertion2
-
+Ocorreria uma divisão, o ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios  das respectivas parábolas , ou seja, esses pontos acúmulados conforme a Linha de Varredura passam a formar uma das parte da divisa das regiões de influência. 
 :::
 ???
 
-Agora é possível entender como são desenhadas partes das regiões de influências, porém o funcionamento que nós vimos só funciona para um caso de intersecção de dois arcos, o que nos gera a seguinte dúvida o que acontece na intersecção entre três arcos? Isso será demonstrado no próximo tópico no próximo tema.
+Podemos observar essa intersecção abaixo:
+
+:insertion2
+
 ## Evento de Circulo
 
-Fontes: 
+Como visto anteriormente, os arcos são uma aproximação da região de influência, sendo que o encontro de dois deles gera um dos pontos de uma do diagrama de Voronoi e esse encontro continua com a expansão dos arcos. Se você esta sentido que a expansão transmite uma sensação estranhamente familiar você está correto, pois ela é um dos componentes do diagrama de voronoi, sendo esse componente as "Arestas de Voronoi"(ligações entre um vértice a outro).
+
+???Exercicio 5
+
+Como visto se a intersecção de dois arcos determina um ponto de uma Aresta de Voronoi, o que seria formado pela intersecção de três arcos?
+
+**OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
+
+:::Gabarito
+Seria um ponto em que há a divisão de três regiões de influência, isso que é exatamente a definição de um Vértice de Voronoi.
+:::
+???
+
+Então vamos pensar em um plano para prosseguir: calcular as intersecções dos arcos e adicionar todos os pontos (Arestas e Vértices) encontrados a cada incremento da Linha de Varredura.
+
+Esse plano realmente parece razoável? Pode ser que para casos simples não tenha muita diferença, mas com o incremento de sítios analisados o número de checagens de intersecções cresceria de forma absurda e a memória para armazenar todos esses pontos também, tornando essa ideia totalmente imprática. 
+
+Vamos pensar de maneira mais simples, imagine os seguintes pontos da figura abaixo. Como transformar esse pontos distintos em um polígono?
+
+![Poli](polig.png)
+
+Para transformar os pontos em um polígono basta apenas conectá-los conforme a figura abaixo:
+
+![Poli](polig2.png)
+
+E para obtermos como montar o polígono quais informações utilizamos? **Apenas os Vértices do Polígono**. Sendo assim, esse é o "pulo do gato" precisamos saber apenas os vértices de voronoi para desenhar o diagrama.
+
+
+
+Então prosseguindo, depois de pelo menos dois eventos de inserção precisamos descobrir se há Vértices de Voronoi no diagrama e suas exatas posições. Isso também lembra algo familiar? Pois é porque lembra mesmo, o momento que um Vértice de Voronoi se forma é exatamente na intersecção de três parábolas distintas. 
+
+Utilizando a figura abaixo deve haver alguma maneira mais simples de descobrir o vértice do que checar todas as possíveis combinações de arco e checar exatamente a posição onde as três se encaixam. 
+
+???Exercicio 6
+
+Lembrando a propriedade de que um Vértice de Voronoi possui a mesma distância para os sítios das áreas em que ocorre a intersecção, existe alguma figura geometrica que podemos relacionar?
+
+**Dica: Qual figura tem um centro que todos os pontos possuem a mesma distância dela?**
+
+:::Gabarito
+É um circulo sendo que o centro é o Vértice de Voronoi, e os sítios estão na circunferência dele.
+:::
+???
+
+A imagem abaixo demonstra a relação evidenciada anteriormente:
+
+![Circle](circulo1.gif)
+
+Apesar de estarmos avançando ainda temos que determinar no algoritmo quando que ocorre essa intersecção. É agora que o algoritmo fica ainda mais interessante, por todos os arcos estarem em função da distância de seus respectivo sítios à Linha de Varredura, essa intersecção só é possível ocorrer quando a Linha de Varredura tangencia o Vértice, ou seja, ocorre quando o ponto com menor valor de y da circunferência incide na reta de escaneamento. Podemos ver isso a partir da seguinte figura:
+
+![Circle](circle2.png)
+
+## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
 * <https://demonstrations.wolfram.com/VoronoiDiagramsForEuropeanCities/>
+* <https://users.cs.fiu.edu/~giri/teach/UoM/7713/f98/CYImage1.gif>
+* <https://jacquesheunis.com/post/fortunes-algorithm/>
+* <http://www.bitbanging.space/posts/voronoi-diagram-with-fortunes-algorithm>
+* <https://iq.opengenus.org/content/images/2021/11/vor29.png>
