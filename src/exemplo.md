@@ -103,7 +103,7 @@ O evento de inserção ocorre quando Linha de Varredura encontra um sítio. Ao s
 Agora que entendemos o evento de inserção imagine que dois sítios tenham sido captados por esses eventos, como vimos com o distanciamento gradativo da Linha as parábolas deles irão aumentar, assumindo que eles são próximos um do outro o é provável de acontecer quando a Linha de Varredura está distante desses sítios? **Uma Intersecão!**. Isso nos leva ao questionameto abaixo:
 
 ???Exercicio 4
-Com o distanciamento gradativo da Linha de Varredura o que aconteceria se dois arcos se intersectassem?
+Com o distanciamento gradativo da Linha de Varredura o que representaria dois arcos se intersectando?
 
 **OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
 :::Gabarito
@@ -121,7 +121,7 @@ Como visto anteriormente, os arcos são uma aproximação da região de influên
 
 ???Exercicio 5
 
-Como visto se a intersecção de dois arcos determina um ponto de uma Aresta de Voronoi, o que seria formado pela intersecção de três arcos?
+Como visto se a intersecção de dois arcos determina um ponto de uma Aresta de Voronoi, qual conceito aprendido é possível relacionar com essa situação?
 
 **OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
 
@@ -168,6 +168,72 @@ A imagem abaixo demonstra a relação evidenciada anteriormente:
 Apesar de estarmos avançando ainda temos que determinar no algoritmo quando que ocorre essa intersecção. É agora que o algoritmo fica ainda mais interessante, por todos os arcos estarem em função da distância de seus respectivo sítios à Linha de Varredura, essa intersecção só é possível ocorrer quando a Linha de Varredura tangencia o Vértice, ou seja, ocorre quando o ponto com menor valor de y da circunferência incide na reta de escaneamento. Podemos ver isso a partir da seguinte figura:
 
 ![Circle](circle2.png)
+
+Contudo, isso não é tudo sobre o evento. Vamos observar a imagem a seguir:
+
+:circle
+
+Podemos ver uma coisa interessante acontecendo, o ponto mais à esquerda teve sua parte direita da párabola totalmente consumida, isso ocorre por parte formar arestas e outra o vértice. Porém, a sua parte esquerda ainda continua crescendo após o evento. Isso causa a seguinte indagação: e se uma parábola for totalmente consumida como na figura abaixo?
+
+**Ela é consumida por inteira**. Como os arcos são uma aproximação da região de influência de um sítio, ela ser consumida por inteira significa que todas as aresta e pontos  do diagrama que compõe ela estão calculados, ou seja, ela não possuirá nenhum Vértice de Voronoi no futuro. 
+
+???Exercicio 7
+Como não haverá Vértice de Voronoi futuramente precisamos mesmo checar se o sítio cuja parábola foi consumida possui uma intersecção de três arcos no futuro? 
+
+:::Gabarito
+Não, pois não haverá Vértices de Voronoi no limite da área de influência desse ponto. Sendo necessário apenas remover esse sítio da lista de eventos para não gastar poder computacional
+:::
+???
+
+Em suma, o Evento de Círculo é um evento que sempre que há um incremento da Linha de Varredura descobre se o centro todos os arranjos de círculos criados assumindo que três sítios validos incidem em sua circunferência. Depois, de descobrir o centro necessitamos apenas descobrir se a Linha de Varredura tangencia o círculo em sua parte inferior,ou seja, dista R da reta, sendo R o raio do círculo. A partir disso, é checado se o arco de um do sítios foi consumido, se posistivo ele se torna um sítio inválido para passar pelo evento.
+
+Tente fazer os seguintes exercícios:
+
+???Exercicio 8
+Quais das imagens abaixo representa um envento de Círculo:
+
+Imagem 1:
+
+![Circle](circle3.png)
+
+Imagem 2:
+
+![Circle](circle4.png)
+
+Imagem 3:
+
+![Circle](circle5.png)
+
+:::Gabarito
+Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha de Varredura.
+:::
+???
+
+???Exercicio 8
+Em quais das imagens abaixo uma parábola foi consumida por inteiro:
+
+:::Gabarito
+Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha de Varredura.
+:::
+???
+## PseudoCódigo:
+
+Juntando todas as ideias precisamos checar se todas as inserções já foram feitas, se esse for o caso acabmos o código, se não continuamos a incrementar a Linha de Varredura, sendo que a cada incremento devemos checar por possíveis eventos de círculo e inserção. Além do mais, não podemos esquecer que precisamos checar dentro de um evento de circulo se algum arco foi consumido.
+
+???Exercicio 9
+A partir das ideias expostas acima, tente criar a representação de um pseudocódigo.
+:::Gabarito
+``` c
+while(nao checou todas as intersecções):
+    Se occrreu um evento de inserção:
+        Adicionar o sítio a lista de sítios válidos
+    Se ocorreu um evento de circulo:
+        Obter e guardar Vértice de Voronoi
+        Se arco foi consumido:
+            Remover o sítio que possuia o arco
+```
+:::
+???
 
 ## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
