@@ -216,17 +216,18 @@ Em quais das imagens abaixo uma parábola foi consumida por inteiro:
 Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha de Varredura.
 :::
 ???
-## PseudoCódigo:
+## Pseudo-Código:
 
-Juntando todas as ideias precisamos checar se todas as inserções já foram feitas, se esse for o caso acabmos o código, se não continuamos a incrementar a Linha de Varredura, sendo que a cada incremento devemos checar por possíveis eventos de círculo e inserção. Além do mais, não podemos esquecer que precisamos checar dentro de um evento de circulo se algum arco foi consumido.
+Juntando todas as ideias precisamos checar se ao incrementar a Linha de Varredura foi acionado algum evento, se esse não for o caso continuamos a varredua, por outro lado caso seja verdadeiro devemos analisar os eventos encontrados. Para o evento de inserção, devemos apenas adicionar o sítio a lista de sítios válidos e criar um arco. Além do mais, não podemos esquecer que precisamos guardar o Vértice de Voronoi dentro de um evento de circulo e checar se algum arco foi consumido, para retirar o sítio que possuia o arco.
 
 ???Exercicio 9
 A partir das ideias expostas acima, tente criar a representação de um pseudocódigo.
 :::Gabarito
 ``` c
-while(nao checou todas as intersecções):
+while(Possui Eventos):
     Se occrreu um evento de inserção:
         Adicionar o sítio a lista de sítios válidos
+        Criar arco
     Se ocorreu um evento de circulo:
         Obter e guardar Vértice de Voronoi
         Se arco foi consumido:
