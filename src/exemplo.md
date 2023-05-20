@@ -211,7 +211,7 @@ Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha d
 ???
 
 ???Exercicio 8
-Na imagem abaixo a parábola do sítio verde foi consumida por inteiro?
+Na imagem abaixo, a parábola do sítio verde foi consumida por inteiro?
 
 Figura 1:
 
