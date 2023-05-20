@@ -218,7 +218,7 @@ Figura 1:
 ![Consumo](con_ex.png)
 
 :::Gabarito
-Não, pois essa parábola teve apenas sua parte direita consumida pelo arco azul. Sendo assim, sua parte esquerda continua existindo e em expansão.
+Não, pois essa parábola teve apenas sua parte direita consumida pelo arco azul. Sendo assim, sua parte esquerda continua existindo e expandindo futuramente.
 :::
 ???
 ## Pseudo-Código:
