@@ -70,7 +70,7 @@ Ao adicionarmos dois sítios recém varridos na figura original obtemos a seguin
 
 ![Questao3](q3gab.png)
 
-A imagem acima faz sentido uma vez que por possuir três pontos será necessário a existência de três regiões de influência. Para casos de diagramas de voronoi com três ou mais regiões de influência, é possível a ocorrência de uma intersecção entre três ou mais áreas em apenas um ponto. Esse ponto é chamado de *Vértice de Voronoi*, esse que aparece como um circulo vermelho na imagem acima. 
+A imagem acima faz sentido, uma vez que por possuir três pontos será necessário a existência de três regiões de influência. Para casos de diagramas de voronoi com três ou mais regiões de influência, é possível a ocorrência de uma intersecção entre três ou mais áreas em apenas um ponto. Esse ponto é chamado de *Vértice de Voronoi*, esse que aparece como um circulo vermelho na imagem acima. 
 
 
 Como dito anteriormente, um Vértice de Voronoi se encontra no local onde há a intersecção de três ou mais áreas de influência, e por ele estar situado nessa intersecção ele possui uma característica peculiar: a distância dele para os sítios das áreas onde ocorrem a intersecção é igual. Ou seja, tomando como exemplo a figura acima e atribuindo aos três sítios as seguintes variáveis (A,B,C) e ao Vértice de Voronoi (V), sabemos que a $\overrightarrow{AV} = \overrightarrow{BV} = \overrightarrow{CV}$.
@@ -81,7 +81,7 @@ Além do mais, o que aconteceria se continuássemos adicionando sítios sob a Li
 ![Questao4](q4.png)
 
 ???Exercicio 3
-A partir da imagem anterior, é possível perceber um padrão formado pelos Vértices de Voronoi. Considerando infinitos sítos recém varridos qual figura é esperada-se que o padrão forme? Podemos relacionar esses sítios infinitamente distribuidos sob a reta por um conceito já aprendido ?
+A partir da imagem anterior, é possível perceber um padrão formado pelos Vértices de Voronoi. Considerando infinitos sítos recém varridos qual figura espera-se que o padrão forme? Podemos relacionar esses sítios infinitamente distribuidos sob a reta por um conceito já aprendido ?
 
 :::Gabarito
 O padrão visto deverá criar uma parábola. Sim, a distribuição desses infinitos sítios formam uma reta paralela com o eixo x, já que todos tem a mesma altura. Como todos eles incidem sob a Linha de Varredura eles são equivalentes a mesma.
@@ -102,11 +102,11 @@ O evento de inserção ocorre quando a Linha de Varredura encontra um sítio. Qu
 Agora que entendemos o evento de inserção, imagine que dois sítios tenham sido captados por esses eventos. Conforme vimos, com o distanciamento gradativo da Linha, as parábolas deles irão aumentar. Assumindo que eles são próximos um do outro, o que é provável de acontecer quando a Linha de Varredura está distante desses sítios? **Uma intersecção!** Isso nos leva ao questionamento abaixo.:
 
 ???Exercicio 4
-Com o distanciamento gradativo da Linha de Varredura o que é formado quando dois arcos se intersectam?
+Com o distanciamento gradativo da Linha de Varredura que conceito é gerado no exato momento de intersecção entre dois arcos?
 
 **OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
 :::Gabarito
-Ocorreria uma divisão. O ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios das respectivas parábolas, ou seja, esses pontos acumulados conforme a Linha de Varredura passa, formam uma das partes da divisão das regiões de influência.
+Uma divisão. O ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios das respectivas parábolas, ou seja, esses pontos acumulados conforme a Linha de Varredura passa, formam uma das partes da divisão das regiões de influência.
 :::
 ???
 
@@ -172,7 +172,9 @@ Contudo, isso não é tudo sobre o evento. Observe a sequência de imagens a seg
 
 :circle
 
-Podemos ver uma coisa interessante acontecendo, o ponto mais à esquerda teve sua parte direita da párabola totalmente consumida. Porém, a sua parte esquerda ainda continua crescendo após o evento. Isso causa a seguinte indagação: e se uma parábola for totalmente consumida como na figura abaixo?
+Podemos ver uma coisa interessante acontecendo, o ponto A teve sua parte direita da párabola totalmente consumida. Porém, a sua parte esquerda ainda continua crescendo após o evento. Isso causa a seguinte indagação: e se uma parábola for totalmente consumida como na figura abaixo?
+
+:consume
 
 Como os arcos são uma aproximação da região de influência de um sítio, quando um arco é consumido por inteiro significa que todas as aresta e pontos do diagrama relacionados à esse sítio estão computados. 
 
@@ -209,10 +211,14 @@ Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha d
 ???
 
 ???Exercicio 8
-Em quais das imagens abaixo uma parábola foi consumida por inteiro:
+Na imagem abaixo, a parábola do sítio verde foi consumida por inteiro?
+
+Figura 1:
+
+![Consumo](con_ex.png)
 
 :::Gabarito
-Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha de Varredura.
+Não, pois essa parábola teve apenas sua parte direita consumida pelo arco azul. Sendo assim, sua parte esquerda continua existindo e expandindo futuramente.
 :::
 ???
 ## Pseudo-Código:
@@ -242,3 +248,5 @@ while(Possui Eventos):
 * <https://jacquesheunis.com/post/fortunes-algorithm/>
 * <http://www.bitbanging.space/posts/voronoi-diagram-with-fortunes-algorithm>
 * <https://iq.opengenus.org/content/images/2021/11/vor29.png>
+* <https://www2.cs.sfu.ca/~binay/813.2011/Fortune.pdf>
+* <https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO4g5JgIFGFmFcV3RT9ggIj4KNJk5KEkCkRMibdGVYpYGXEFLuwZQyvqWh7yVbNGLHE5M&usqp=CAU>
