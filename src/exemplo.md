@@ -1,245 +1,48 @@
-<h1>Algoritmo de Fortuna e diagramas de Voronoi</h1>
+<h1>Algoritmo de Fortuna e Diagramas de Voronoi</h1>
 
 ## Diagramas de Voronoi
 
+Imagine o seguinte cenário:
 
-Para primeiro entender o que o algoritmo de fortune faz, precisamos primeiro entender a razão pela qual ele existe. Suponha que você é um piloto, e no caso de uma pousagem de emergência, precisa saber qual o aeroporto mais próximo de você, independente de onde esteja. Para isso, você pega um mapa, e desenha um ponto (ou sítio, lembre desse nome) em cima de cada aeroporto. Após fazer isso, você desenha uma célula em volta de cada ponto, de forma que, para qualquer lugar dentro dessa célula, o aeroporto dentro dela esta mais próximo do que qualquer outro. Com isso você teria algo mais ou menos assim:
+Você é um piloto de avião da renomada companhia aérea *DESPROG AIRWAYS*. Durante uma noite longa de um voo rotineiro, de repente, o avião sofre uma **falha técnica letal**, sendo necessário realizar um pouso forçado nos próximos 15 minutos. Infelizmente essa falha afetou o sistema de localização da aeronave tornando-o inútilizável, contudo, você lembra que possui um mapa da região que contém os aeroportos mais próximos. Além do mais, como um piloto experiente você é capaz de usar a posição das estrelas a fim de descobrir a sua posição atual. Você marca a sua posição no papel e obtém o seguinte mapa:
 
-
-![Imagem_Voronoi_Mapa](ItalyVoronoiMap.png)
-
-
-Agora, você tem no seu mapa, todas as regiões conhecidas como "áreas de influência" de cada ponto, ou seja, a região em que, para qualquer ponto dentro dela, o site mais próximo é o que está envolto na mesma célula.
-
-
-Aplicando essa ideia para qualquer plano finito, com um número finito n de pontos, temos a idéia do diagrama de Voronoi. Ou seja, o que o diagrama de Voronoi nos dá é e área de influência dos sites contidos em um plano (podemos também extrapolar essa ideia para n dimensões, mas não tocaremos nisso). 
-
-![Imagem_Voronoi_Plano_Genérico](VoronoiGenérico.png)
-
-## O algoritmo de Fortuna
-
-Primeiramente, para entender a ideia do Algoritmo de Fortune é necessário entender o seguinte conceito:  **Linha de Varredura ("Sweep Line")**.
-
-O algoritmo de Fortuna utiliza um método de varredura para construir o diagrama de voronoi. Um método de varredura consiste em dividir um plano em duas partes: a *"suja"* e a que já foi *"varrida (limpa)"*. Esse esquema é criado para que possamos identificar o acionamento de eventos do algoritmo, esses que serão discutidos futuramente no handout.
-\
-\
-Desse modo, no nosso caso precisamos de algo capaz de dividir um plano 2D em duas partes. Isso é uma tarefa perfeita para a geometria de uma **RETA** . Sendo assim, surge o conceito de  *"Linha de Varredura"*, uma linha que gradativamente vai "varrendo" o plano inteiro. 
-\
-\
-Nesse handout, utilizaremos a linha de varredura conforme a imagem abaixo, sendo assim, ela é uma reta que começa na parte superior da imagem e faz a varredura do eixo y dela (De cima para baixo). 
-
-![Gif_SweepLine](Scan.gif)
-
-Além do mais, vale ressaltar que é possível utilizar diferentes convenções da Linha de Varredura. Um exemplo é varrer dividindo o eixo x (Da esquerda pra direita). Sendo assim, com os conhecimentos adquiridos sobre a Linha de Varredura que tal fazer alguns exercicíos.
+![Imagem_Aviao](ex1.png)
 
 ???Exercicio 1
-Como no algoritmo utilizamos a Linha de Varredura como referência, em um momento qualquer só temos conhecimento dos sítios que já foram varridos para esboçar o diagrama de voronoi.
-\
-\
-Sendo assim, a partir da figura abaixo tente esboçar as áreas de influência dos sítios já varridos utilizando como fronteira do voronoi as dimensões do retângulo e a linha de varredura.  
-![Questao1](q1.png)
+A partir do mapa acima como você descobriria qual dos três aeroportos é o mais próximo?
 :::Gabarito
-
-Como no momento só existe um sítio que foi escaneado pela linha, só haverá ele no voronoi, dessa maneira, a área de influência dele é o diagrama por completo, uma vez que por definição não há nenhum ponto que é mais próximo de outro sítio do que ele mesmo. Dessa maneira, seu esboço deve ter ficado como a imagem abaixo:
-
-![Questao1](q1gab.png)
+Uma das maneiras possíveis além do "olhômetro", seria descobrir a distância euclidiana do avião para cada aeroporto e descobrir qual deles está mais próximo como na figura abaixo:
+![Imagem_Aviao2](gabex1.png)    
 :::
 ???
+
+Sendo assim, você como um bom piloto descobriu a menor distância euclidiana a tempo e foi capaz de pousar o avião em segurança. Todavia, a situação o afetou profundamente e questões as seguintes questões começaram a infiltrar seus pensamentos:  E se existissem muitos aeroportos na região, como eu poderia realizar tantos calculos? E se meu tempo fosse ainda mais limitado? 
+
+Diante das seguintes questões você se sentiu aliviado por seu problema ter tido condições tão simples, porém a fim de evitar futuros acidentes você se propôs a criar uma solução mais efetiva para alguém que se encontre na mesma situação.
 
 ???Exercicio 2
-
-Tomando como base o último exercício, o que aconteceria se adicionassemos um ponto recém varrido, ou seja, que acabou de ser escaneado pela Linha de Varredura como na figura abaixo. Tente novamente esboçar as áreas de influência dos sítios já varridos.
-
-**OBS: Considere como "Recêm Varrido" um ponto que incide exatamente sobre a reta**
-
-![Questao2](q2.png)
+Utilizando o mesmo mapa acima, existe uma maneira de representar as distâncias para os aeroportos de forma visual, para que não seja necessário o calculo da distância euclidiana?
 :::Gabarito
-
-Com a existência de dois sítios o diagrama será dividido em dois, cada uma dessas partes será a área de influência de um desses sítios.
-
-![Questao2](q2gab.png)
+Uma maneira possível é criar um mapa que divida as regiões que são mais próximas de um aeroporto do que outro (Áreas de influência). Isso pode ser explicitado pela figura abaixo:
+![Imagem_Aviao2](gabex2.png)  
 :::
 ???
 
-O próximo exercício iremos fazer juntos, pois um novo conceito será introduzido. 
-\
-\
-Ao adicionarmos dois sítios recém varridos na figura original obtemos a seguinte imagem como resposta:
-\
-**OBS: Considere como "Recêm Varrido" um ponto que incide exatamente sobre a reta**
+Dessa maneira você criou o que chamamos de Diagrama de Voronoi. Esse diagrama utiliza os pontos de interesse (sites) para dividir o plano em diversas regiões de influência,sendo que essas áreas possuem a seguinte lei: **Todos os pontos de uma região de influência são mais próximos do site dentro dela do que qualquer outro. No nosso cenário utilizamos os pontos de interesse (aeroportos) para calcular suas áreas de influência a fim de resolver o problema dado. Um outro exemplo de um Diagrama de Voronoi é a figura abaixo que utiliza os jogadores em campo como ponto de interesse:
 
-![Questao3](q3gab.png)
+![Imagem_Tebas](exemplo.jpeg)  
 
-A imagem acima faz sentido, uma vez que por possuir três pontos será necessário a existência de três regiões de influência. Para casos de diagramas de voronoi com três ou mais regiões de influência, é possível a ocorrência de uma intersecção entre três ou mais áreas em apenas um ponto. Esse ponto é chamado de *Vértice de Voronoi*, esse que aparece como um circulo vermelho na imagem acima. 
+Os Diagramas de Voronoi possuem diversas aplicações, uma delas é na área de geometria computacional. Desse modo, nessa aula será estudado o Algoritmo de Fortune, um dos algoritmos capaz de criar um desses diagramas.
 
+## Algoritmo de Fortune
 
-Como dito anteriormente, um Vértice de Voronoi se encontra no local onde há a intersecção de três ou mais áreas de influência, e por ele estar situado nessa intersecção ele possui uma característica peculiar: a distância dele para os sítios das áreas onde ocorrem a intersecção é igual. Ou seja, tomando como exemplo a figura acima e atribuindo aos três sítios as seguintes variáveis (A,B,C) e ao Vértice de Voronoi (V), sabemos que a $\overrightarrow{AV} = \overrightarrow{BV} = \overrightarrow{CV}$.
-\
-\
-Além do mais, o que aconteceria se continuássemos adicionando sítios sob a Linha de Varredura? A imagem a seguir nos mostra a resposta uma resposta para 8 sítos:
+O Algoritmo de Fortune tem o seguinte objetivo: criar um Diagrama de Voronoi a partir dos pontos de interesse fornecidos como entrada.
 
-![Questao4](q4.png)
+Primeiramente, para entender a ideia do Algoritmo de Fortune é necessário entender o seguinte conceito:  *Linha de Varredura ("Sweep Line")*.
 
-???Exercicio 3
-A partir da imagem anterior, é possível perceber um padrão formado pelos Vértices de Voronoi. Considerando infinitos sítos recém varridos qual figura espera-se que o padrão forme? Podemos relacionar esses sítios infinitamente distribuidos sob a reta por um conceito já aprendido ?
 
-:::Gabarito
-O padrão visto deverá criar uma parábola. Sim, a distribuição desses infinitos sítios formam uma reta paralela com o eixo x, já que todos tem a mesma altura. Como todos eles incidem sob a Linha de Varredura eles são equivalentes a mesma.
-:::
-???
+## Linha de Varredura
 
-Dessa maneira, a área que essa parábola engloba serve como uma estimativa da área de influência de um único sítio em relação à posição da linha de varredura, desse modo, a parábola acaba por mostrar a região dos pontos que estão mais próximos do sítio que da Linha de Varredura. Valendo apena ressaltar que essa região de influência estimada da parábola pode mudar com o tempo. Essa asserção nos leva ao primeiro evento do nosso algoritmo. 
-
-
-## Evento de Inserção
-
-O evento de inserção ocorre quando a Linha de Varredura encontra um sítio. Quando um sítio é escaneado, ocorre a inserção de uma parábola (arco). Essa parábola é a mesma que vimos anteriormente, ou seja, delinea a região de pontos que estão mais próximos a esse sítio do que à Linha de Varredura. Isso faz com que a área da parábola aumente com o distanciamento da linha após o evento. Isso pode ser visto a partir das imagens simplificadas abaixo:
-
-:insertion1
-
-**OBS: A Imagem acima é apenas uma aproximação não contendo proporções exatas**
-
-Agora que entendemos o evento de inserção, imagine que dois sítios tenham sido captados por esses eventos. Conforme vimos, com o distanciamento gradativo da Linha, as parábolas deles irão aumentar. Assumindo que eles são próximos um do outro, o que é provável de acontecer quando a Linha de Varredura está distante desses sítios? **Uma intersecção!** Isso nos leva ao questionamento abaixo.:
-
-???Exercicio 4
-Com o distanciamento gradativo da Linha de Varredura que conceito é gerado no exato momento de intersecção entre dois arcos?
-
-**OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
-:::Gabarito
-Uma divisão. O ponto de intersecção das equações dos arcos em um momento qualquer divide as áreas de influência entre os sítios das respectivas parábolas, ou seja, esses pontos acumulados conforme a Linha de Varredura passa, formam uma das partes da divisão das regiões de influência.
-:::
-???
-
-Podemos observar essa intersecção abaixo:
-
-:insertion2
-
-## Evento de Circulo
-
-Como visto anteriormente, os arcos são uma aproximação da região de influência, sendo que o encontro de dois deles gera um dos pontos de uma do diagrama de Voronoi e esse encontro continua com a expansão dos arcos. Se você esta sentido que a expansão transmite uma sensação estranhamente familiar você está correto, pois ela é um dos componentes do diagrama de voronoi, sendo esse componente as "Arestas de Voronoi"(ligações entre um vértice a outro).
-
-???Exercicio 5
-
-Como mencionado anteriormente, se a intersecção de dois arcos determina um ponto de uma Aresta de Voronoi, com qual conceito aprendido é possível relacionar essa situação?
-
-**OBS: Lembre que os arcos são uma aproximação da região de influência de um sítio**
-
-:::Gabarito
-Seria um ponto em que há a divisão de três regiões de influência, isso que é exatamente a definição de um Vértice de Voronoi.
-:::
-???
-
-Então vamos pensar em um plano para prosseguir: calcular as intersecções dos arcos e adicionar todos os pontos (Arestas e Vértices) encontrados a cada incremento da Linha de Varredura.
-
-Esse plano realmente parece razoável? Pode ser que para casos simples não tenha muita diferença, mas com o incremento de sítios analisados o número de checagens de intersecções cresceria de forma absurda e a memória para armazenar todos esses pontos também, tornando essa ideia totalmente imprática. 
-
-Vamos pensar de maneira mais simples, imagine os seguintes pontos da figura abaixo. Como transformar esse pontos distintos em um polígono?
-
-![Poli](polig.png)
-
-Para transformar os pontos em um polígono basta apenas conectá-los conforme a figura abaixo:
-
-![Poli](polig2.png)
-
-E para montarmos o polígono quais informações utilizamos? **Apenas os Vértices do Polígono**. Sendo assim, esse é o "pulo do gato" precisamos saber apenas os vértices de voronoi para desenhar o diagrama.
-
-
-
-Então prosseguindo, depois de pelo menos dois eventos de inserção precisamos descobrir se há Vértices de Voronoi no diagrama e suas exatas posições. Isso também lembra algo familiar? Pois é porque lembra mesmo, o momento que um Vértice de Voronoi se forma é exatamente na intersecção de três parábolas distintas. 
-
-Ao utilizar a figura abaixo, é possível encontrar uma maneira mais simples de descobrir o vértice em vez de verificar todas as possíveis combinações de arcos e identificar exatamente a posição onde as três parábolas se encaixam.
-
-???Exercicio 6
-
-Lembrando a propriedade de que um Vértice de Voronoi possui a mesma distância para os sítios das áreas envolvidas no evento de intersecção, existe alguma figura geométrica com a qual possamos relacionar isso?
-
-**Dica: Qual figura tem um centro que todos os pontos possuem a mesma distância dela?**
-
-:::Gabarito
-É um circulo. Sendo que o centro é o Vértice de Voronoi, e os sítios envolvidos no evento estão na circunferência dele.
-:::
-???
-
-A imagem abaixo demonstra a relação evidenciada anteriormente:
-
-![Circle](circulo1.gif)
-
-Apesar de estarmos avançando, ainda precisamos determinar no algoritmo quando ocorre essa intersecção. Agora é que o algoritmo se torna ainda mais interessante, pois todos os arcos estão em função da distância de seus respectivos sítios em relação à Linha de Varredura. Essa intersecção só é possível quando a Linha de Varredura tangencia o Vértice, ou seja, quando o ponto com menor valor de y da circunferência coincide com a reta de escaneamento. Podemos observar isso na seguinte figura:
-
-![Circle](circle2.png)
-
-Contudo, isso não é tudo sobre o evento. Observe a sequência de imagens a seguir:
-
-:circle
-
-Podemos ver uma coisa interessante acontecendo, o ponto A teve sua parte direita da párabola totalmente consumida. Porém, a sua parte esquerda ainda continua crescendo após o evento. Isso causa a seguinte indagação: e se uma parábola for totalmente consumida como na figura abaixo?
-
-:consume
-
-Como os arcos são uma aproximação da região de influência de um sítio, quando um arco é consumido por inteiro significa que todas as aresta e pontos do diagrama relacionados à esse sítio estão computados. 
-
-???Exercicio 7
-Precisamos checar a ocorrência de novos eventos para um sítio cujo arco já foi consumido? 
-
-:::Gabarito
-Não, pois não haverá Vértices de Voronoi no limite da área de influência desse ponto. Sendo necessário apenas remover esse sítio da lista de eventos para não gastar poder computacional
-:::
-???
-
-Em suma, o Evento de Círculo é um evento que ocorre sempre que há um incremento da Linha de Varredura e um sítio escaneado, junto com outros dois sítios já escaneados, formam uma circunferência. Após descobrir o centro dessa circunferência, precisamos apenas verificar se a Linha de Varredura tangencia essa circunferência em sua parte inferior. A partir disso, é verificado se o arco de um dos sítios foi consumido. Se positivo, esse sítio se torna inválido para passar pelo evento.
-
-Tente fazer os seguintes exercícios:
-
-???Exercicio 8
-Quais das imagens abaixo representa um envento de Círculo:
-
-Imagem 1:
-
-![Circle](circle3.png)
-
-Imagem 2:
-
-![Circle](circle4.png)
-
-Imagem 3:
-
-![Circle](circle5.png)
-
-:::Gabarito
-Apenas a imagem três por ela ser a única em que o círculo tangencia a Linha de Varredura.
-:::
-???
-
-???Exercicio 8
-Na imagem abaixo, a parábola do sítio verde foi consumida por inteiro?
-
-Figura 1:
-
-![Consumo](con_ex.png)
-
-:::Gabarito
-Não, pois essa parábola teve apenas sua parte direita consumida pelo arco azul. Sendo assim, sua parte esquerda continua existindo e expandindo futuramente.
-:::
-???
-## Pseudo-Código:
-
-Juntando todas as ideias precisamos checar se ao incrementar a Linha de Varredura foi acionado algum evento, se esse não for o caso continuamos a varredua, por outro lado caso um ou mais eventos tenham sido acionados devemos analisar os eventos encontrados. Para o evento de inserção, devemos apenas adicionar o sítio a lista de sítios válidos e criar um arco. Além do mais, não podemos esquecer que precisamos guardar o Vértice de Voronoi dentro de um evento de circulo e checar se algum arco foi consumido, para retirar o sítio que possuía o arco da lista de sítios.
-
-???Exercicio 9
-A partir das ideias expostas acima, tente criar a representação de um pseudocódigo.
-:::Gabarito
-``` c
-while(Possui Eventos):
-    Se occrreu um evento de inserção:
-        Adicionar o sítio a lista de sítios válidos
-        Criar arco
-    Se ocorreu um evento de circulo:
-        Obter e guardar Vértice de Voronoi
-        Se arco foi consumido:
-            Remover o sítio que possuia o arco
-```
-:::
-???
 
 ## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
@@ -249,4 +52,3 @@ while(Possui Eventos):
 * <http://www.bitbanging.space/posts/voronoi-diagram-with-fortunes-algorithm>
 * <https://iq.opengenus.org/content/images/2021/11/vor29.png>
 * <https://www2.cs.sfu.ca/~binay/813.2011/Fortune.pdf>
-* <https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO4g5JgIFGFmFcV3RT9ggIj4KNJk5KEkCkRMibdGVYpYGXEFLuwZQyvqWh7yVbNGLHE5M&usqp=CAU>
