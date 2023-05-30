@@ -135,6 +135,10 @@ Sendo assim, esse arco é capaz de estimar a região de influência de um sítio
    
 ## Evento de Inserção
 
+## Evento de Circulo
+
+## Complexidade
+
 ## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
 * <https://demonstrations.wolfram.com/VoronoiDiagramsForEuropeanCities/>
