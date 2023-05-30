@@ -175,6 +175,8 @@ Contudo, isso não é tudo sobre o evento. Vamos observar a imagem a seguir:
 
 Podemos ver uma coisa interessante acontecendo, o ponto mais à esquerda teve sua parte direita da párabola totalmente consumida, isso ocorre por parte formar arestas e outra o vértice. Porém, a sua parte esquerda ainda continua crescendo após o evento. Isso causa a seguinte indagação: e se uma parábola for totalmente consumida como na figura abaixo?
 
+![Circle](circle8.png)
+
 **Ela é consumida por inteira**. Como os arcos são uma aproximação da região de influência de um sítio, ela ser consumida por inteira significa que todas as aresta e pontos  do diagrama que compõe ela estão calculados, ou seja, ela não possuirá nenhum Vértice de Voronoi no futuro. 
 
 ???Exercicio 7
