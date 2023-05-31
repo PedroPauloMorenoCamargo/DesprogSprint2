@@ -68,8 +68,11 @@ A partir da figura abaixo tente esboçar na região já varrida a fronteira entr
 
 **OBS 1: a fronteira é o conjunto de pontos que está à mesma distância de dois ou mais sítios**
 
+**OBS 2: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
 
 ![Questao3](parab1.png)
+
+
 
 :::Gabarito
 Como só existem dois pontos na figura, e esses possuem o mesmo valor de x, a fronteira será uma reta no ponto médio deles. Observa-se isso na figura a seguir:
@@ -83,6 +86,8 @@ Como só existem dois pontos na figura, e esses possuem o mesmo valor de x, a fr
 
 Quando adicionamos mais um sítio como ficam a(s) fronteira(s) entre eles?
 
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
+
 ![Questao4](parab2.png)
 
 :::Gabarito
@@ -95,6 +100,8 @@ Quando adicionamos mais um sítio como ficam a(s) fronteira(s) entre eles?
 ???Exercicio 5
 
 Repita o processo a fim de praticar.
+
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
 
 ![Questao4](parab3.png)
 
@@ -110,6 +117,8 @@ Repita o processo a fim de praticar.
 Por fim tente fazer a mesma coisa para a figura abaixo:
 
 **Dica: como a figura está espelhada a geometria será a mesma para ambos os lados** 
+
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
 
 ![Questao4](parab4.png)
 
@@ -142,6 +151,8 @@ Agora sabemos como estimar a região de influência de um sítio em relação a 
 ???Exercicio 8
 
 Tente esboçar a área de influência do ponto de interesse em relação a Linha de Varredura em cada uma das situações abaixo:
+
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
 
 :insertion
 
@@ -187,11 +198,15 @@ Esse evento ocorre quando qualquer sítio é escaneado pela Linha de Varredura, 
 
 Contudo o algoritmo não analisa apenas um sítio, sendo necessário a análise de vários pontos de interesse para um determinado instante. --- ESTÁ CONFUSO E POTENCIALMENTE REPETITIVO, REVER DEPOIS.
 
+## Intersecções
+
 ???Exercicio 9
 
 Vamos analisar uma figura que possui dois pontos de interesse.
 
 Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Varredura em cada um dos instantes abaixo:
+
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
 
 :insertion2
 
@@ -239,12 +254,136 @@ Sendo assim, que tal analisar uma figura que possui três pontos de interesse.
 
 Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Varredura em cada um dos instantes abaixo:
 
+**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
+
+:insertion4
+
 :::Gabarito 1
+
+Como os pontos ainda não foram varridos somos incapazes de estimar suas área de influência.
+
+![Insertion4](insertiongab41.png)
+
+:::
+
+:::Gabarito 2
+
+Ocorre a inserção da parábola do primeiro ponto de interesse.
+
+![Insertion4](insertiongab42.png)
+:::
+
+:::Gabarito 3
+
+Ocorre a inserção das parábolas restantes.
+
+
+![Insertion4](insertiongab43.png)
+:::
+
+:::Gabarito 4
+
+Com o distanciamento da Linha de Varredura, as parábolas laterais se intersectam o arco do sítio central
+
+![Insertion2](insertiongab44.png)
+
+:::
+:::Gabarito 5
+
+Ocorre a intersecção das três parábolas.
+
+![Insertion2](insertiongab45.png)
 
 :::
 ???
 
+Retomando o conceito de que as parábolas estimam uma região de influência, a intersecção de três arcos forma um ponto que é equidistante aos três sítios, dividindo suas áreas de influência. Esse ponto encontrado é denominado Vértice de Voronoi e ele provém da intersecção de três ou mais áreas de influência.
+
+![Insertion1](ex2.png)
+
+Isso é ótimo, pois descobrindo todos os Vértices de Voronoi somos capazes de formar o Diagrama, bastando apenas ligar os vertices posteriormente. Com isso surge a seguinte indagação: Como descobrir a posição do Vértice e torna-lo identificável pela Linha de Varredura?
+
+
+???Exercicio 11
+
+Vamos observar a figura anterior, é possível criar uma forma geométrica conhecida a partir dos pontos dados?
+
+**OBS: Lembre da Equidistância entre o Vértice e os Sítios**
+
+:::Gabarito 1
+
+Sim, é possível formar um círculo com seu centro sendo o Vértice de Voronoi e seus sítios incidindo na circunferência. Podemos observar esse fato na imagem abaixo:
+
+
+![Insertion1](ex3.png)
+:::
+???
+
+Agora somos capazes de calcular as coordenadas dos Vértices de Voronoi, apenas com uma simples equção de círculo. Porém, ainda falta achar uma maneira de indentificar esse evento. Felizmente a geometria dos arcos torna isso possível, pois exato momento em que ocorre a intersecção dos três arcos, o círculo a parte inferior do círculo tangencia a Linha de Varredura. Desse modo, descobrimos quando ocorre o segundo evento do algoritmo o **Evento de Círculo**.
+
+![Insertion1](ex4.png)
+
 ## Evento de Circulo
+
+Juntando as ideias reunidas, um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.  Sendo círculo formado por três sítios distintos tangencia em sua parte inferior a Linha de Varredura. Como o Vértice de Voronoi se localiza no centro dessa geometria podemos calcula-lo nesse instante. 
+
+???Exercicio 12
+Que tal fixar esse conceito. Quais das imagens abaixo representa um Evento de Círculo:
+
+Imagem 1:
+
+![Circle](circle3.png)
+
+Imagem 2:
+
+![Circle](circle4.png)
+
+Imagem 3:
+
+![Circle](circle5.png)
+
+:::Gabarito
+Apenas a imagem dois por ela ser a única em que o círculo tangencia a Linha de Varredura.
+:::
+???
+
+Contudo, ainda há mais uma faceta a ser explorada em relação aos Eventos de Círculo.
+
+
+???Exercicio 13
+
+Aos três arcos se intersectarem na figura abaixo, o que ocorre com a parábola do sítio superior direito?
+
+![Circle](circle2.png)
+
+:::Gabarito
+Podemos observar pela representação da linha pontilhada que ela é totalmente **consumida** pelos outros arcos.
+:::
+???
+
+Mas o que significa uma parábola ser **consumida**? Observe a imagem novamente:
+
+![Circle](circle2.png)
+
+Podemos ver que um arco ser **consumido** representa o calculo completo de toda sua região de influência . Ou seja, é nesse momento em que a estimativa das parábolas coincidem com a real área de influência.
+
+???Exercicio 14
+Precisamos checar a ocorrência de novos Eventos de Circulo para um sítio cujo arco já foi consumido? 
+
+:::Gabarito
+Não, pois não haverá mais Vértices de Voronoi no limite da área de influência desse ponto, uma vez que toda sua região já foi calculada. Sendo necessário apenas remover esse sítio da fila de eventos para não gastar poder computacional.
+:::
+???
+
+Porém, há casos nos quais o arco ainda não foi consumido completamente na intersecção entre as três parábolas. Observe o caso abaixo:
+
+:consume
+
+Na sequência acima é possível observar que o sítio superior esquerdo não tem seu arco consumido por completo na intersecção das três parábolas, mas apenas sua parte direita. A parte esquerda do arco ainda continua existindo e em expansão, dessa maneira, não foi calculada toda a área de influência desse sítio ainda. Desse modo, devemos checar por possíveis Eventos de Círculo desse sítio até que seu arco seja consumido por completo.
+
+Reformulando a definição acima: 
+
+Um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.  Sendo círculo formado por três sítios distintos tangencia em sua parte inferior a Linha de Varredura. Como o Vértice de Voronoi se localiza no centro dessa geometria podemos calcula-lo nesse instante. Sendo necessário checar no momento desse evento se o arco de um dos sítios foi totalmente consumido a fim de remover esse ponto de interesse de calculos futuros.
 
 ## Complexidade
 
@@ -256,3 +395,5 @@ Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Var
 * <http://www.bitbanging.space/posts/voronoi-diagram-with-fortunes-algorithm>
 * <https://iq.opengenus.org/content/images/2021/11/vor29.png>
 * <https://www2.cs.sfu.ca/~binay/813.2011/Fortune.pdf>
+* <https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg6M_j8lSFkm0PsVelP6PBW1U3HXpNHx2mSwikLpJWYhpTrtYIXg4E--M59JtYRCiQTUc&usqp=CAU>
+* <https://www.codeproject.com/KB/recipes/413452/Voronoi_diagram_section.png>
