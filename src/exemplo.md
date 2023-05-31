@@ -137,7 +137,7 @@ Podemos concluir que esse arco é capaz de estimar a região de influência de u
    
 ## Evento de Inserção
 
-Agora sabemos como estimar a região de influência de um sítio em relação a posição da Linha de Varredura. Mas o que isso quer realmente dizer na prática?
+Agora sabemos como estimar a região de influência de um sítio em relação a posição da Linha de Varredura. Mas como isso nos ajuda?
 
 ???Exercicio 8
 
@@ -155,7 +155,8 @@ Como o ponto não foi varrido ainda somos incapazes de estimar sua área de infl
 
 :::Gabarito 2
 
-Ao ser escaneado ocorre a inserção da parábola na figura.
+Ao ser escaneado ocorre a inserção da parábola na figura. Como o foco da parábola incide sobre a 
+linha de varredura, nesse passo a parábola é uma linha vertical para cima.
 
 ![Insertion2](insertiongab2.png)
 
@@ -163,7 +164,7 @@ Ao ser escaneado ocorre a inserção da parábola na figura.
 
 :::Gabarito 3
 
-Como podemos ver, com o distanciamento da Linha de Varredura há o aumento da área de influência estimada do ponto.
+Como podemos ver, com o distanciamento da Linha de Varredura há o aumento da área de influência estimada do ponto, isso é, "a parábola cresce". REFAZER IMAGEM, LEMBRAR DEPOIS
 
 ![Insertion3](insertiongab3.png)
 
@@ -171,24 +172,24 @@ Como podemos ver, com o distanciamento da Linha de Varredura há o aumento da á
 
 :::Gabarito 4
 
-Com um distanciamento ainda maior há um aumento proporcional da parábola.
+Com um distanciamento ainda maior há um aumento proporcional da parábola. REFAZER IMAMGEM, LEMBRAR DEPOIS
 
 ![Insertion4](insertiongab4.png)
 
 :::
 ???
 
-Como vimos nos esboços anteriores, ao um ponto ser escaneado há a inserção da parábola que estima sua região de influência na figura. Com isso, identificamos um dos eventos principais do Algoritmo de Fortune: Evento de Inserção.  
+Como vimos nos esboços anteriores, quando um ponto é escaneado surge uma parábola que estima sua região de influência na figura. Tendo isso em mente, podemos tratar de um dos eventos principais do Algoritmo de Fortune, o **Evento de Inserção**.  
 
 :insertion1
 
-Por outras palavras, esse evento ocorre quando um sítio é escaneado pela Linha de Varredura, nesse momento ocorre a inserção de uma parábola (arco). Essa parábola  delinea a região de pontos que estão mais próximos a esse sítio do que à Linha de Varredura. Isso faz com que a área da parábola aumente com o distanciamento da linha após o evento.
+Esse evento ocorre quando qualquer sítio é escaneado pela Linha de Varredura, nesse momento ocorre a inserção de uma parábola (arco). Essa parábola  delinea a região de pontos que estão mais próximos a esse sítio do que à Linha de Varredura. Isso faz com que a área da parábola aumente com o distanciamento da linha após o evento.
 
-Contudo o algoritmo não analisa apenas um sítio, sendo necessário a análise de vários pontos de interesse para um determinado instante. 
+Contudo o algoritmo não analisa apenas um sítio, sendo necessário a análise de vários pontos de interesse para um determinado instante. --- ESTÁ CONFUSO E POTENCIALMENTE REPETITIVO, REVER DEPOIS.
 
 ???Exercicio 9
 
-Sendo assim, que tal analisar uma figura que possui dois pontos de interesse.
+Vamos analisar uma figura que possui dois pontos de interesse.
 
 Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Varredura em cada um dos instantes abaixo:
 
@@ -196,7 +197,7 @@ Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Var
 
 :::Gabarito 1
 
-Como os pontos não foram varridos ainda somos incapazes de estimar suas área de influência.
+Como os pontos ainda não foram varridos somos incapazes de estimar suas área de influência.
 
 ![Insertion2](insertion21.png)
 
@@ -225,11 +226,11 @@ Com um distanciamento ainda maior, é possível checar uma intersecção entre o
 :::
 ???
 
-Porém o que significa a intersecção de dois arcos? Utilizando como base o fato das parábolas estimarem a região de influência de seus respectivos pontos, uma intersecção representaria a fronteira entre esses sítios, ou seja, o ponto qual está a mesma distância de ambos os pontos de interesse. Podemos enxergar o ocorrido completo na sequência abaixo:
+Mas o que significa a intersecção de dois arcos? Quando consideramos o fato de que as parábolas representam a área de influência de seus pontos correspondentes, a intersecção representa uma **fronteira** entre essas áreas, lembrando, o conjunto de pontos que estão equidistantes a esses dois pontos de interesse.
 
 :insertion3
 
-Como podemos ver as continuas intersecções criam uma reta conforme a Linha de Varredura se distancia. Desse modo, essa linha contem os pontos das intersecções para diferentes instantes. Porém, o que ocorreria caso três parábolas se intersectassem? 
+Observe que as intersecções criam uma reta conforme a Linha de Varredura se distancia. Desse modo, essa linha contem os pontos das intersecções para diferentes instantes (NÃO ENTENDI, REVER DEPOIS). Porém, o que ocorreria caso três parábolas se intersectassem? 
 
 
 ???Exercicio 10
