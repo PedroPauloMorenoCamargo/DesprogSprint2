@@ -66,13 +66,13 @@ Conforme o mapa é varrido pela linha, é necessário obter a região de influê
 ???Exercicio 3
 A partir da figura abaixo tente esboçar na região já varrida a fronteira entre os seus sítios. Considere que um ponto que incide na Linha de Varredura já tenha sido varrido.
 
-**OBS 1: Considere como fronteira um ponto que está a mesma distância de dois ou mais sítios**
+**OBS 1: a fronteira é o conjunto de pontos que está à mesma distância de dois ou mais sítios**
 
 
 ![Questao3](parab1.png)
 
 :::Gabarito
-Como só existem dois pontos na figura, e esses possuem o mesmo valor de x a fronteira será exatamente um reta no ponto médio deles. Isso é demonstrado pela seguinte figura:
+Como só existem dois pontos na figura, e esses possuem o mesmo valor de x, a fronteira será uma reta no ponto médio deles. Observa-se isso na figura a seguir:
 
 ![Questao3_Gab](pgab1.png)
 
@@ -81,7 +81,7 @@ Como só existem dois pontos na figura, e esses possuem o mesmo valor de x a fro
 
 ???Exercicio 4
 
-Com mais um sítio adicionado na figura tente novamente esboçar a fronteira entre os sítios.
+Quando adicionamos mais um sítio como ficam a(s) fronteira(s) entre eles?
 
 ![Questao4](parab2.png)
 
@@ -94,7 +94,7 @@ Com mais um sítio adicionado na figura tente novamente esboçar a fronteira ent
 
 ???Exercicio 5
 
-Com outro sítio adicionado, faça outra tentativa esboçar a fronteira entre os sítios da figura abaixo.
+Repita o processo a fim de praticar.
 
 ![Questao4](parab3.png)
 
@@ -122,18 +122,18 @@ Por fim tente fazer a mesma coisa para a figura abaixo:
 
 ???Exercicio 7
 
-A partir dos exercícios feitos é possível perceber a formação aproximada de um elemento geométrico conforme vamos a adicionando sítios sob a Linha de Varredura. Qual é esse elemento?
+A partir dos exercícios feitos é possível perceber a formação de um elemento geométrico conforme vamos a adicionando sítios sob a Linha de Varredura. Qual é esse elemento?
 
 :::Gabarito
 O elemento formado é uma parábola ou arco.
 :::
 ???
 
-Dessa maneira, caso adicionemos um número infinito de pontos sob a Linha de Varredura, teriamos uma parábola que nos mostra a região na qual todos os pontos estão mais próximos do sítio analisado à Linha de Varredura. Essa párabola pode ser evidenciada de maneira mais clara pela figura abaixo:
+Dessa maneira, caso um número infinito de pontos fossem adicionados sob a Linha de Varredura, teríamos uma fronteira parabólica. Dentro dessa parábola todos os pontos estão mais próximos ao sítio do que da Linha de Varredura. Podemos ver essa párabola mais claramente na figura abaixo:
 
 ![Parabs](q4.png)
 
-Sendo assim, esse arco é capaz de estimar a região de influência de um sítio para um momento qualquer da varredura. Vale ressaltar, que a parábola é apenas uma aproximação da área de influência, sendo que a área final pode acabar sendo maior que essa estimativa. 
+Podemos concluir que esse arco é capaz de estimar a região de influência de um sítio para um momento qualquer da varredura. Vale ressaltar, que a parábola (ou arco) é apenas uma aproximação da área de influência, sendo que a área final pode acabar sendo maior que essa estimativa  intermediária. 
    
 ## Evento de Inserção
 
