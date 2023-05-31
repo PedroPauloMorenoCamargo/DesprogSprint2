@@ -4,67 +4,69 @@
 
 Imagine o seguinte cenário:
 
-Você é um piloto de avião da renomada companhia aérea *DESPROG AIRWAYS*. Durante uma noite longa de um voo rotineiro, de repente, o avião sofre uma **falha técnica letal**, sendo necessário realizar um pouso forçado nos próximos 15 minutos. Infelizmente essa falha afetou o sistema de localização da aeronave tornando-o inútilizável, contudo, você lembra que possui um mapa da região que contém os aeroportos mais próximos. Além do mais, como um piloto experiente você é capaz de usar a posição das estrelas a fim de descobrir a sua posição atual. Você marca a sua posição no papel e obtém o seguinte mapa:
+Você é um piloto de avião da renomada companhia aérea *DESPROG AIRWAYS*. Durante uma noite longa de um voo rotineiro, de repente, o avião sofre uma **falha técnica letal**, sendo necessário realizar um pouso forçado nos próximos 15 minutos. Infelizmente essa falha afetou o sistema de localização da aeronave tornando-o inútilizável. Contudo, você lembra que possui um mapa da região que contém os aeroportos mais próximos. Como um piloto experiente você é capaz de usar a posição das estrelas a fim de descobrir a sua posição atual. Você marca a sua posição no papel e obtém o seguinte mapa:
 
 ![Imagem_Aviao](ex1.png)
 
 ???Exercicio 1
-A partir do mapa acima como você descobriria qual dos três aeroportos é o mais próximo?
+A partir do mapa acima como você determinaria o aeroporto mais próximo?
 :::Gabarito
-Uma das maneiras possíveis além do "olhômetro", seria descobrir a distância euclidiana do avião para cada aeroporto e descobrir qual deles está mais próximo como na figura abaixo:
+Uma das maneiras possíveis além do "olhômetro", seria descobrir a distância euclidiana do avião para cada aeroporto como na figura abaixo:
 
 ![Imagem_Aviao2](gabex1.png)    
 :::
 ???
 
-Sendo assim, você como um bom piloto descobriu a menor distância euclidiana a tempo e foi capaz de pousar o avião em segurança. Todavia, a situação o afetou profundamente e questões as seguintes questões começaram a infiltrar seus pensamentos:  E se existissem muitos aeroportos na região, como eu poderia realizar tantos calculos? E se meu tempo fosse ainda mais limitado? 
-
-Diante das seguintes questões você se sentiu aliviado por seu problema ter tido condições tão simples, porém a fim de evitar futuros acidentes você se propôs a criar uma solução mais efetiva para alguém que se encontre na mesma situação.
+Você como um bom piloto descobriu a menor distância euclidiana a tempo e foi capaz de pousar o avião em segurança. Todavia, a companhia área determinou que no caso de outra emergência o piloto não pode ficar responsável por calcular tudo no momento começou a desenvolver um sistema de segurança para catástrofes similares.
 
 ???Exercicio 2
-Utilizando o mesmo mapa acima, existe uma maneira de representar as distâncias para os aeroportos de forma visual, para que não seja necessário o calculo da distância euclidiana?
+O primeiro desafio da companhia é a criação de um sistema que, para cada ponto no mapa, diga qual é o aeroporto mais próximo. De forma que, no momento de uma catástrofe basta o piloto conferir esse sistema e pousar.
+
 :::Gabarito
-Uma maneira possível é criar um mapa que divida as regiões que são mais próximas de um aeroporto do que outro (Áreas de influência). Isso pode ser explicitado pela figura abaixo, em que só de ve-la somos capazes de saber o aeroporto mais próximo:
+Uma maneira possível é colorir o primeiro mapa de forma que cada aeroporto possuí uma cor específica e todo conjunto de pontos mais próximos a um aeroporto assume essa mesma cor:
 
 ![Imagem_Aviao2](gabex2.png)  
 :::
 ???
+A companhia criou o que chamamos de Diagrama de Voronoi. No "jargão de Voronói" os aeroportos são os pontos de interesse ("sites") e as áreas coloridas são as **regiões de influência**. Em uma região de influência **Todos os pontos dessa zona são mais próximos do sítio interno à ela do que qualquer outro**.
 
-Dessa maneira você criou o que chamamos de Diagrama de Voronoi. Esse diagrama utiliza os pontos de interesse (sites) para dividir o plano em diversas regiões de influência,sendo que essas áreas possuem a seguinte lei: **Todos os pontos de uma região de influência são mais próximos do site dentro dela do que qualquer outro**. No nosso cenário utilizamos os pontos de interesse (aeroportos) para calcular suas áreas de influência a fim de resolver o problema dado. Um outro exemplo de um Diagrama de Voronoi é a figura abaixo que utiliza os jogadores em campo como ponto de interesse:
+Para colorir o mapa a empresa tentou inicialmente calcular para cada metro quadrado no mapa a distância à todos aeroportos. Entretanto, logo a companhia percebeu que para mapas grandes e com vários aeroportos esse método torna-se computacionalmente muito caro.
 
-![Imagem_Tebas](exemplo.jpeg)  
 
-Os Diagramas de Voronoi possuem diversas aplicações, uma delas é na área de geometria computacional. Desse modo, nessa aula será estudado o Algoritmo de Fortune, um dos algoritmos capaz de criar um desses diagramas.
+![Imagem_aeroportos](airports.png)
+
+
+A seguir veremos o algoritmo de Fortune, que está dentre os algoritmos mais eficientes na criação desse tipo de diagrama. 
 
 ## Algoritmo de Fortune
 
-O Algoritmo de Fortune tem o seguinte objetivo: criar um Diagrama de Voronoi a partir dos pontos de interesse fornecidos como entrada.
+O Algoritmo de Fortune tem o seguinte objetivo: criar um Diagrama de Voronoi a partir dos pontos de interesse (os aeroportos) fornecidos como entrada.
 
 Primeiramente, para entender a ideia do Algoritmo de Fortune é necessário entender o seguinte conceito:  *Linha de Varredura ("Sweep Line")*.
 
 ## Linha de Varredura
 
-O algoritmo de Fortuna utiliza um método de varredura para construir o Diagrama de Voronoi. Um método de varredura consiste em dividir um plano em duas partes: a "suja" e a que já foi "varrida (limpa)". Esse esquema é criado para que possamos acionar os eventos do algoritmo, esses que serão discutidos futuramente no handout.
+O algoritmo de Fortuna utiliza um método de varredura para construir o Diagrama de Voronoi. Um método de varredura consiste em dividir um plano em duas partes: a "suja" e a que já foi "varrida (limpa)". Esse esquema é criado para que possamos acionar os eventos do algoritmo, que serão discutidos futuramente no handout.
 
-Desse modo, no nosso caso precisamos de algo capaz de dividir um plano 2D em duas partes. Isso é uma tarefa perfeita para a geometria de uma **RETA**. Sendo assim, surge o conceito de "Linha de Varredura", uma linha que gradativamente vai "varrendo" os eventos do algoritmo.
+Precisamos de algo capaz de dividir um plano 2D em duas partes. Isso é uma tarefa perfeita para a uma **RETA**. Assim surge o conceito de "Linha de Varredura", uma linha que gradativamente vai "varrendo" os eventos do algoritmo.
 
 Para essa reta varrer o plano inteiro ela tem que seguir apenas uma direção desde seu inicio até o fim. Nesse handout será utilizado uma reta que faz a varredura do eixo y, começando na parte superior até chegar a parte inferior (de cima pra baixo). As figuras abaixo demonstram o funcionamento de uma Linha de Varredura:
 
 :linha
 
 
-Além do mais, para que a Linha siga a direção proposta os eventos a serem tratados primeiro são os que possuem o maior valor da coordenada y. Desse modo, o alogoritmo utiliza uma fila de prioridade a fim de tratar a ordem dos eventos. 
+Para que a Linha siga a direção proposta os eventos a serem tratados primeiro são os que possuem o maior valor da coordenada y. Desse modo, o alogoritmo utiliza uma **fila de prioridade** para tratar a ordem dos eventos. 
 
 Vale também ressaltar que é possível utilizar diferentes convenções da Linha de Varredura. Um exemplo é varrer dividindo o eixo x (Da esquerda pra direita).
 
 ## Arcos
 
-Com conhecimentos adquiridos anteriormente, surge a seguinte pergunta: Será que é possível estimar a região de influência de um sítio para um momento qualquer da varredura? Obter a resposta para essa pergunta é crucial, uma vez que com ela conseguiriamos ter um esboço do Diagrama de Voronoi para qualquer instância do algoritmo. Para descobrir essa resposta que tal colocarmos a mão na massa?
+Conforme o mapa é varrido pela linha, é necessário obter a região de influência de um sítio para um momento qualquer da varredura. É crucial obter uma resposta para essa pergunta, uma vez que com ela conseguiriamos ter um esboço do Diagrama de Voronoi para qualquer instância do algoritmo. Para descobrir essa resposta que tal colocarmos a mão na massa?
 
 ???Exercicio 3
 A partir da figura abaixo tente esboçar na região já varrida a fronteira entre os seus sítios. Considere que um ponto que incide na Linha de Varredura já tenha sido varrido.
 
-**OBS 1: Considere como fronteira um ponto que esta a mesma distância de dois ou mais sítios**
+**OBS 1: Considere como fronteira um ponto que está a mesma distância de dois ou mais sítios**
 
 
 ![Questao3](parab1.png)
