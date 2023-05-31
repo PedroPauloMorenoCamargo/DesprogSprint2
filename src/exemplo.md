@@ -387,6 +387,12 @@ Um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.
 
 ## Complexidade
 
+O calculo da complexidade é relativamente simples, uma vez que precisamos primeiro ordenar os sítios em uma fila de prioridade e percorrer eles e os possíveis Eventos de Círculo adicionados. 
+
+A ordenação tem sua complexidade mínima de  $O(nlog(n))$ como visto nas aulas do semestre e percorrer todos os Eventos possui complexidade $O(n)$. Dessa maneira, utilizando a propriedade da soma de complexidades obtemos no final uma complexidade $O(nlog(n))$.
+
+![Circle](ex5.png)
+
 ## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
 * <https://demonstrations.wolfram.com/VoronoiDiagramsForEuropeanCities/>
@@ -397,3 +403,4 @@ Um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.
 * <https://www2.cs.sfu.ca/~binay/813.2011/Fortune.pdf>
 * <https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg6M_j8lSFkm0PsVelP6PBW1U3HXpNHx2mSwikLpJWYhpTrtYIXg4E--M59JtYRCiQTUc&usqp=CAU>
 * <https://www.codeproject.com/KB/recipes/413452/Voronoi_diagram_section.png>
+* <https://adrianmejia.com/images/time-complexity-examples.png>
