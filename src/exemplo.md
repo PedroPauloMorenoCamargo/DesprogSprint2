@@ -391,6 +391,14 @@ A ordenação tem uma complexidade de $O(nlog(n))$ (no melhor caso) e percorrer 
 
 Fechamento:
 
+    Seguem curiosidades sobre a implementação do algoritmo:
+
+Primeira curiosidade, **não existe linha de varredura**. Isso mesmo, nas implementações mais comuns desse algoritmo não há linha de varredura, ela é um artifício visual para ilustrar a ordem conforme os vértices de Voronói vão sendo computados.
+
+Segunda curiosidade, **as parábolas não existem**. Como a linha de varredura, as parábolas também não são computadas o tempo todo, elas são uma representação visual de como as regiões de influência evoluem conforme percorremos o plano e à partir desse conceito podemos derivar os eventos de círculo.
+
+Finalmente, o algoritmo em sua essência consiste de percorrer os sítios em ordem descendente de ordenada e averiguar para cada evento de inserção (cada novo sítio percorrido), se houve um evento de círculo. Caso um evento de círculo aconteça, o vértice de Voronói obtido é adicionado à uma lista de vértices de Voronói e os sítios que se tornaram irrelevantes são deletados da fila de prioridade. Uma vez que todos os sítios foram inseridos podemos projetar os **vértices de Voronói** sobre os planos e ligá-los uns aos outros e o produto é o nosso querido diagrama.
+
 
 
 ## Fontes:
