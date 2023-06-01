@@ -393,7 +393,7 @@ A ordenação tem uma complexidade de $O(nlog(n))$ (no melhor caso) e percorrer 
 
     Seguem curiosidades sobre a implementação do algoritmo:
 
-Primeira curiosidade, **não existe linha de varredura**. Isso mesmo, nas implementações mais comuns desse algoritmo não há linha de varredura, ela é um artifício visual para ilustrar a ordem conforme os vértices de Voronói vão sendo computados.
+Primeira curiosidade, **não existe Linha de Varredura**. Isso mesmo, nas implementações mais comuns desse algoritmo não há Linha de Varredura, ela é um artifício visual para ilustrar a ordem conforme os vértices de Voronói vão sendo computados.
 
 Segunda curiosidade, **as parábolas não existem**. Como a linha de varredura, as parábolas também não são computadas o tempo todo, elas são uma representação visual de como as regiões de influência evoluem conforme percorremos o plano e à partir desse conceito podemos derivar os eventos de círculo.
 
