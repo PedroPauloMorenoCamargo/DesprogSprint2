@@ -196,7 +196,7 @@ Como vimos nos esboços anteriores, quando um ponto é escaneado surge uma pará
 
 Esse evento ocorre quando qualquer sítio é escaneado pela Linha de Varredura, nesse momento ocorre a inserção de uma parábola (arco). Essa parábola  delinea a região de pontos que estão mais próximos a esse sítio do que à Linha de Varredura. Isso faz com que a área da parábola aumente com o distanciamento da linha após o evento.
 
-Contudo o algoritmo não analisa apenas um sítio, sendo necessário a análise de vários pontos de interesse para um determinado instante. --- ESTÁ CONFUSO E POTENCIALMENTE REPETITIVO, REVER DEPOIS.
+Contudo o algoritmo não analisa apenas um sítio, sendo necessário a análise de vários pontos de interesse simultâneamente.
 
 ## Intersecções
 
@@ -241,7 +241,7 @@ Com um distanciamento ainda maior, é possível verificar uma intersecção entr
 :::
 ???
 
-Mas o que significa a intersecção de dois arcos? Quando consideramos o fato de que as parábolas representam a área de influência de seus pontos correspondentes, a intersecção representa uma **fronteira** entre essas áreas. (lembrando, uma fronteira é o conjunto de pontos que estão equidistantes a dois ou mais pontos de interesse.
+Mas o que significa a intersecção de dois arcos? Quando consideramos o fato de que as parábolas representam a área de influência de seus pontos correspondentes, a intersecção representa uma **fronteira** entre essas áreas. (lembrando, uma fronteira é o conjunto de pontos que estão equidistantes a dois ou mais pontos de interesse).
 
 :insertion3
 
@@ -389,7 +389,7 @@ A ordenação tem uma complexidade de $O(nlog(n))$ (no melhor caso) e percorrer 
 
 ![Circle](ex5.png)
 
-Fechamento:
+## Fechamento:
 
     Seguem curiosidades sobre a implementação do algoritmo:
 
@@ -397,7 +397,7 @@ Primeira curiosidade, **não existe linha de varredura**. Isso mesmo, nas implem
 
 Segunda curiosidade, **as parábolas não existem**. Como a linha de varredura, as parábolas também não são computadas o tempo todo, elas são uma representação visual de como as regiões de influência evoluem conforme percorremos o plano e à partir desse conceito podemos derivar os eventos de círculo.
 
-Finalmente, o algoritmo em sua essência consiste de percorrer os sítios em ordem descendente de ordenada e averiguar para cada evento de inserção (cada novo sítio percorrido), se houve um evento de círculo. Caso um evento de círculo aconteça, o vértice de Voronói obtido é adicionado à uma lista de vértices de Voronói e os sítios que se tornaram irrelevantes são deletados da fila de prioridade. Uma vez que todos os sítios foram inseridos podemos projetar os **vértices de Voronói** sobre os planos e ligá-los uns aos outros e o produto é o nosso querido diagrama.
+Finalmente, o algoritmo em sua essência consiste de percorrer os sítios em ordem descendente de ordenada e averiguar para cada evento de inserção (cada novo sítio percorrido), se houve um evento de círculo. Caso um evento de círculo aconteça, o vértice obtido é adicionado à uma lista de Vértices de Voronói e os sítios que se tornaram irrelevantes são deletados da fila de prioridade. Uma vez que todos os sítios foram inseridos podemos projetar os **Vértices de Voronói** sobre os planos e ligá-los uns aos outros e o produto é o nosso querido diagrama.
 
 
 
