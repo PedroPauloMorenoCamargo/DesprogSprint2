@@ -55,7 +55,7 @@ Para essa reta varrer o plano inteiro ela tem que seguir apenas uma direção de
 :linha
 
 
-Para que a Linha siga a direção proposta os eventos a serem tratados primeiro são os que possuem o maior valor da coordenada y. Desse modo, o alogoritmo utiliza uma **fila de prioridade** para tratar a ordem dos eventos. 
+Para que a Linha siga a direção proposta os eventos a serem tratados primeiro são os que possuem o maior valor da coordenada y. Desse modo, o alogoritmo utiliza uma **fila de prioridade** para tratar a ordem dos eventos.
 
 Vale também ressaltar que é possível utilizar diferentes convenções da Linha de Varredura. Um exemplo é varrer dividindo o eixo x (Da esquerda pra direita).
 
@@ -220,41 +220,41 @@ Como os pontos ainda não foram varridos somos incapazes de estimar suas área d
 
 :::Gabarito 2
 
-Ao serem escaneados ocorre a inserção das parábolas na figura.
+Conforme os pontos são escaneados ocorre a inserção das parábolas na figura.
 
 ![Insertion2](insertiongab21.png)
 :::
 
 :::Gabarito 3
 
-Como podemos ver, com o distanciamento da Linha de Varredura há o aumento das parábolas.
+Com o distanciamento da Linha de Varredura há o aumento das parábolas.
 
 ![Insertion2](insertiongab22.png)
 :::
 
 :::Gabarito 4
 
-Com um distanciamento ainda maior, é possível checar uma intersecção entre os arcos.
+Com um distanciamento ainda maior, é possível verificar uma intersecção entre os arcos.
 
 ![Insertion2](insertiongab23.png)
 
 :::
 ???
 
-Mas o que significa a intersecção de dois arcos? Quando consideramos o fato de que as parábolas representam a área de influência de seus pontos correspondentes, a intersecção representa uma **fronteira** entre essas áreas, lembrando, o conjunto de pontos que estão equidistantes a esses dois pontos de interesse.
+Mas o que significa a intersecção de dois arcos? Quando consideramos o fato de que as parábolas representam a área de influência de seus pontos correspondentes, a intersecção representa uma **fronteira** entre essas áreas. (lembrando, uma fronteira é o conjunto de pontos que estão equidistantes a dois ou mais pontos de interesse.
 
 :insertion3
 
-Observe que as intersecções criam uma reta conforme a Linha de Varredura se distancia. Desse modo, essa linha contem os pontos das intersecções para diferentes instantes (NÃO ENTENDI, REVER DEPOIS). Porém, o que ocorreria caso três parábolas se intersectassem? 
+Observe que as intersecções entre os arcos geram uma reta conforme a Linha de Varredura se distancia. Essa linha é a fronteira entre as regiões de influência dos sítios. Porém, o que acontece quando três parábolas se intersectam?
 
 
 ???Exercicio 10
 
-Sendo assim, que tal analisar uma figura que possui três pontos de interesse.
+Para descobrir a resposta, analise a figura a seguir:
 
 Tente esboçar as parábolas dos pontos de interesse em relação a Linha de Varredura em cada um dos instantes abaixo:
 
-**OBS: As resposta são apenas uma aproximações da realidade, não contendo proporções exatas**
+**OBS: As resposta são apenas uma aproximações da realidade, elas não possuem proporções exatas**
 
 :insertion4
 
@@ -283,30 +283,30 @@ Ocorre a inserção das parábolas restantes.
 
 :::Gabarito 4
 
-Com o distanciamento da Linha de Varredura, as parábolas laterais se intersectam o arco do sítio central
+Com o distanciamento da Linha de Varredura, as parábolas laterais intersectam a parábola do sítio central
 
 ![Insertion2](insertiongab44.png)
 
 :::
 :::Gabarito 5
 
-Ocorre a intersecção das três parábolas.
+A parábola central é completamente consumida pelas laterais.
 
 ![Insertion2](insertiongab45.png)
 
 :::
 ???
 
-Retomando o conceito de que as parábolas estimam uma região de influência, a intersecção de três arcos forma um ponto que é equidistante aos três sítios, dividindo suas áreas de influência. Esse ponto encontrado é denominado Vértice de Voronoi e ele provém da intersecção de três ou mais áreas de influência.
+Retomando o conceito de que as parábolas estimam uma região de influência, o ponto resultante da intersecção de três arcos é equidistante aos três sítios. Esse ponto encontrado é denominado Vértice de Voronoi e ele provém da intersecção de três ou mais áreas de influência.
 
 ![Insertion1](ex2.png)
 
-Isso é ótimo, pois descobrindo todos os Vértices de Voronoi somos capazes de formar o Diagrama, bastando apenas ligar os vertices posteriormente. Com isso surge a seguinte indagação: Como descobrir a posição do Vértice e torna-lo identificável pela Linha de Varredura?
+Isso é ótimo, pois descobrindo todos os bértices de Voronoi somos capazes de formar o Diagrama, basta apenas ligar esses vértices.  Tendo isso em mente, torna-se imperativo encontrar um jeito de, à partir da linha de varredura, determinar a posição de todos os vértices de Voronói.
 
 
 ???Exercicio 11
 
-Vamos observar a figura anterior, é possível criar uma forma geométrica conhecida a partir dos pontos dados?
+Vamos observar a figura anterior, é possível criar uma forma geométrica conhecida à partir dos pontos dados?
 
 **OBS: Lembre da Equidistância entre o Vértice e os Sítios**
 
@@ -319,16 +319,16 @@ Sim, é possível formar um círculo com seu centro sendo o Vértice de Voronoi 
 :::
 ???
 
-Agora somos capazes de calcular as coordenadas dos Vértices de Voronoi, apenas com uma simples equção de círculo. Porém, ainda falta achar uma maneira de indentificar esse evento. Felizmente a geometria dos arcos torna isso possível, pois exato momento em que ocorre a intersecção dos três arcos, o círculo a parte inferior do círculo tangencia a Linha de Varredura. Desse modo, descobrimos quando ocorre o segundo evento do algoritmo o **Evento de Círculo**.
+Agora somos capazes de calcular as coordenadas dos Vértices de Voronoi, apenas com uma simples equção de círculo. Porém, ainda falta achar uma maneira de indentificar esse evento. Felizmente, a geometria dos arcos torna isso possível, visto que no exato momento em que ocorre a intersecção dos três arcos, a parte inferior do círculo tangencia a Linha de Varredura. Chamamos isso de **Evento de Círculo**, toda vez que detectamos um evento dessa natureza somos capazes de calcular um vértice de Voronói.
 
 ![Insertion1](ex4.png)
 
 ## Evento de Circulo
 
-Juntando as ideias reunidas, um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.  Sendo círculo formado por três sítios distintos tangencia em sua parte inferior a Linha de Varredura. Como o Vértice de Voronoi se localiza no centro dessa geometria podemos calcula-lo nesse instante. 
+Juntando as ideias reunidas, um **Evento de Círculo** ocorre quando há a intersecção de três parábolas. O círculo é formado por três sítios distintos e tangencia, em sua parte inferior, a Linha de Varredura. Como o Vértice de Voronoi se localiza no centro dessa geometria podemos calcula-lo nesse instante. 
 
 ???Exercicio 12
-Que tal fixar esse conceito. Quais das imagens abaixo representa um Evento de Círculo:
+Vamos fixar esse conceito. Quai(s) das imagens abaixo representa(m) um Evento de Círculo:
 
 Imagem 1:
 
@@ -352,7 +352,7 @@ Contudo, ainda há mais uma faceta a ser explorada em relação aos Eventos de C
 
 ???Exercicio 13
 
-Aos três arcos se intersectarem na figura abaixo, o que ocorre com a parábola do sítio superior direito?
+Quando os três arcos se intersectarem na figura abaixo, o que ocorre com a parábola do sítio superior direito?
 
 ![Circle](circle2.png)
 
@@ -365,7 +365,7 @@ Mas o que significa uma parábola ser **consumida**? Observe a imagem novamente:
 
 ![Circle](circle2.png)
 
-Podemos ver que um arco ser **consumido** representa o calculo completo de toda sua região de influência . Ou seja, é nesse momento em que a estimativa das parábolas coincidem com a real área de influência.
+Podemos ver que quando um arco é consumido,  toda a região de influência de seu sítio já foi calculada. Ou seja, a partir desse momento não precisamos mais considerar esse sítio em eventos futuros.
 
 ???Exercicio 14
 Precisamos checar a ocorrência de novos Eventos de Circulo para um sítio cujo arco já foi consumido? 
@@ -379,19 +379,19 @@ Porém, há casos nos quais o arco ainda não foi consumido completamente na int
 
 :consume
 
-Na sequência acima é possível observar que o sítio superior esquerdo não tem seu arco consumido por completo na intersecção das três parábolas, mas apenas sua parte direita. A parte esquerda do arco ainda continua existindo e em expansão, dessa maneira, não foi calculada toda a área de influência desse sítio ainda. Desse modo, devemos checar por possíveis Eventos de Círculo desse sítio até que seu arco seja consumido por completo.
-
-Reformulando a definição acima: 
-
-Um **Evento de Círculo** ocorre quando há a intersecção de três parábolas.  Sendo círculo formado por três sítios distintos tangencia em sua parte inferior a Linha de Varredura. Como o Vértice de Voronoi se localiza no centro dessa geometria podemos calcula-lo nesse instante. Sendo necessário checar no momento desse evento se o arco de um dos sítios foi totalmente consumido a fim de remover esse ponto de interesse de calculos futuros.
+Na sequência acima é possível observar que o sítio superior esquerdo não tem seu arco consumido por completo na intersecção das três parábolas, mas apenas sua parte direita. A parte esquerda do arco ainda continua existindo e em expansão, dessa maneira, esse sítio ainda não pode ser removido da fila de prioridade uma vez que sua área de influência ainda não está completamente calculada.
 
 ## Complexidade
 
-O calculo da complexidade é relativamente simples, uma vez que precisamos primeiro ordenar os sítios em uma fila de prioridade e percorrer eles e os possíveis Eventos de Círculo adicionados. 
+O cálculo da complexidade é relativamente simples. Para que a linha de varredura percorra os sítios de cima para baixo, é necessário ordenar esses pontos em relação a y.   
 
-A ordenação tem sua complexidade mínima de  $O(nlog(n))$ como visto nas aulas do semestre e percorrer todos os Eventos possui complexidade $O(n)$. Dessa maneira, utilizando a propriedade da soma de complexidades obtemos no final uma complexidade $O(nlog(n))$.
+A ordenação tem uma complexidade de $O(nlog(n))$ (no melhor caso) e percorrer todos os Eventos possui complexidade $O(n)$. Dessa maneira, utilizando a propriedade da soma de complexidades obtemos no final uma complexidade $O(nlog(n))$.
 
 ![Circle](ex5.png)
+
+Fechamento:
+
+
 
 ## Fontes:
 * <https://demonstrations.wolfram.com/VoronoiDiagrams/>
